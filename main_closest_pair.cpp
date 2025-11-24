@@ -5,6 +5,10 @@
 #include <chrono>
 #include <cmath>
 
+
+// CREDIT STATEMENT: We only worked within our group, did not recieve help from anyone else
+// Used the textbook and lecture notes as references for pseudocode
+
 using namespace std;
 
 double bf_closest_pair(const vector<city>& cities);
