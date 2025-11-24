@@ -20,9 +20,9 @@ struct City{
 
 
 double bf_closest_pair(const vector<City>& cities){
-
+//////////////////////////////////
 // Add derek's implimentation here
-
+//////////////////////////////////
 }
 
 // divide and conquer approach
