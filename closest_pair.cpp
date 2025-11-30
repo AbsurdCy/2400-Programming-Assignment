@@ -17,12 +17,40 @@ struct City{
     double y;
 };
 
+// function to calculate distance between two cities
+double dist(const City& a, const City& b) {
+    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
+}
+
+// struct to store result of closest pair
+struct ClosestPairResult {
+    double distance;
+    City cityA;
+    City cityB;
+};
 
 
+// brute force approach
 double bf_closest_pair(const vector<City>& cities){
-//////////////////////////////////
-// Add derek's implimentation here
-//////////////////////////////////
+    int n = (int)cities.size();
+    double best = numeric_limits<double>::infinity();
+    // to store the closest pair
+    City bestA, bestB;
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            double d = dist(cities[i], cities[j]);
+            if (d < best) {
+                best = d;
+                bestA = cities[i];
+                bestB = cities[j];
+            }
+        }
+    }
+    ClosestPairResult result;
+    result.distance = best;
+    result.cityA = bestA;
+    result.cityB = bestB;
+    return result.distance;
 }
 
 // divide and conquer approach
