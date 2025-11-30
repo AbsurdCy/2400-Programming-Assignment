@@ -1,51 +1,100 @@
-Brute Force Runtime:6400ns Divide and Conquer Runtime:92000ns
-Brute Force Runtime:6600ns Divide and Conquer Runtime:60500ns
-Brute Force Runtime:6800ns Divide and Conquer Runtime:53800ns
-Brute Force Runtime:7100ns Divide and Conquer Runtime:54800ns
-Brute Force Runtime:7300ns Divide and Conquer Runtime:75600ns
-Brute Force Runtime:7900ns Divide and Conquer Runtime:58000ns
-Brute Force Runtime:7900ns Divide and Conquer Runtime:59100ns
-Brute Force Runtime:8200ns Divide and Conquer Runtime:58500ns
-Brute Force Runtime:8500ns Divide and Conquer Runtime:57800ns
-Brute Force Runtime:8700ns Divide and Conquer Runtime:61800ns
-Brute Force Runtime:9000ns Divide and Conquer Runtime:61300ns
-Brute Force Runtime:9400ns Divide and Conquer Runtime:85700ns
-Brute Force Runtime:9800ns Divide and Conquer Runtime:70500ns
-Brute Force Runtime:10100ns Divide and Conquer Runtime:67900ns
-Brute Force Runtime:10200ns Divide and Conquer Runtime:82600ns
-Brute Force Runtime:10700ns Divide and Conquer Runtime:114800ns
-Brute Force Runtime:11600ns Divide and Conquer Runtime:183100ns
-Brute Force Runtime:13800ns Divide and Conquer Runtime:82300ns
-Brute Force Runtime:11600ns Divide and Conquer Runtime:89200ns
-Brute Force Runtime:11900ns Divide and Conquer Runtime:85300ns
-Brute Force Runtime:12700ns Divide and Conquer Runtime:142900ns
-Brute Force Runtime:12700ns Divide and Conquer Runtime:149300ns
-Brute Force Runtime:13400ns Divide and Conquer Runtime:87100ns
-Brute Force Runtime:13600ns Divide and Conquer Runtime:84500ns
-Brute Force Runtime:14000ns Divide and Conquer Runtime:79800ns
-Brute Force Runtime:14100ns Divide and Conquer Runtime:82300ns
-Brute Force Runtime:14600ns Divide and Conquer Runtime:105200ns
-Brute Force Runtime:16600ns Divide and Conquer Runtime:87000ns
-Brute Force Runtime:16700ns Divide and Conquer Runtime:141500ns
-Brute Force Runtime:17100ns Divide and Conquer Runtime:89000ns
-Brute Force Runtime:17700ns Divide and Conquer Runtime:107900ns
-Brute Force Runtime:17900ns Divide and Conquer Runtime:94900ns
-Brute Force Runtime:18300ns Divide and Conquer Runtime:130500ns
-Brute Force Runtime:18800ns Divide and Conquer Runtime:107900ns
-Brute Force Runtime:19200ns Divide and Conquer Runtime:133300ns
-Brute Force Runtime:19900ns Divide and Conquer Runtime:152600ns
-Brute Force Runtime:18500ns Divide and Conquer Runtime:101400ns
-Brute Force Runtime:23700ns Divide and Conquer Runtime:113400ns
-Brute Force Runtime:19500ns Divide and Conquer Runtime:102900ns
-Brute Force Runtime:19800ns Divide and Conquer Runtime:104700ns
-Brute Force Runtime:20800ns Divide and Conquer Runtime:92100ns
-Brute Force Runtime:24300ns Divide and Conquer Runtime:114900ns
-Brute Force Runtime:21100ns Divide and Conquer Runtime:105600ns
-Brute Force Runtime:24600ns Divide and Conquer Runtime:90800ns
-Brute Force Runtime:22100ns Divide and Conquer Runtime:115800ns
-Brute Force Runtime:22600ns Divide and Conquer Runtime:103500ns
-Brute Force Runtime:23200ns Divide and Conquer Runtime:86500ns
-Brute Force Runtime:14200ns Divide and Conquer Runtime:67500ns
-Brute Force Runtime:16000ns Divide and Conquer Runtime:60900ns
-Brute Force Runtime:24400ns Divide and Conquer Runtime:82100ns
-Brute Force Runtime:24900ns Divide and Conquer Runtime:87700ns
+(0, 700 ns, 800 ns)
+(1, 900 ns, 700 ns)
+(2, 300 ns, 200 ns)
+(3, 100 ns, 200 ns)
+(4, 200 ns, 200 ns)
+(5, 100 ns, 100 ns)
+(6, 200 ns, 100 ns)
+(7, 200 ns, 100 ns)
+(8, 500 ns, 500 ns)
+(9, 100 ns, 200 ns)
+(10, 500 ns, 400 ns)
+(11, 100 ns, 0 ns)
+(12, 200 ns, 100 ns)
+(13, 200 ns, 100 ns)
+(14, 100 ns, 200 ns)
+(15, 100 ns, 100 ns)
+(16, 100 ns, 100 ns)
+(17, 400 ns, 300 ns)
+(18, 300 ns, 300 ns)
+(19, 400 ns, 300 ns)
+(20, 200 ns, 200 ns)
+(21, 100 ns, 100 ns)
+(22, 200 ns, 300 ns)
+(23, 300 ns, 400 ns)
+(24, 500 ns, 500 ns)
+(25, 200 ns, 100 ns)
+(26, 500 ns, 500 ns)
+(27, 300 ns, 300 ns)
+(28, 300 ns, 200 ns)
+(29, 300 ns, 200 ns)
+(30, 100 ns, 100 ns)
+(31, 300 ns, 300 ns)
+(32, 400 ns, 300 ns)
+(33, 300 ns, 300 ns)
+(34, 300 ns, 200 ns)
+(35, 0 ns, 0 ns)
+(36, 200 ns, 300 ns)
+(37, 100 ns, 100 ns)
+(38, 200 ns, 200 ns)
+(39, 400 ns, 400 ns)
+(40, 300 ns, 300 ns)
+(41, 100 ns, 0 ns)
+(42, 1100 ns, 800 ns)
+(43, 200 ns, 200 ns)
+(44, 100 ns, 0 ns)
+(45, 400 ns, 500 ns)
+(46, 700 ns, 700 ns)
+(47, 200 ns, 200 ns)
+(48, 200 ns, 200 ns)
+(49, 300 ns, 100 ns)
+(50, 200 ns, 200 ns)
+(51, 200 ns, 300 ns)
+(52, 200 ns, 100 ns)
+(53, 300 ns, 200 ns)
+(54, 100 ns, 200 ns)
+(55, 200 ns, 200 ns)
+(56, 300 ns, 200 ns)
+(57, 100 ns, 100 ns)
+(58, 100 ns, 100 ns)
+(59, 100 ns, 200 ns)
+(60, 200 ns, 300 ns)
+(61, 200 ns, 200 ns)
+(62, 200 ns, 100 ns)
+(63, 0 ns, 100 ns)
+(64, 100 ns, 200 ns)
+(65, 200 ns, 200 ns)
+(66, 100 ns, 100 ns)
+(67, 300 ns, 200 ns)
+(68, 200 ns, 200 ns)
+(69, 200 ns, 200 ns)
+(70, 0 ns, 100 ns)
+(71, 400 ns, 400 ns)
+(72, 400 ns, 400 ns)
+(73, 200 ns, 300 ns)
+(74, 500 ns, 700 ns)
+(75, 0 ns, 100 ns)
+(76, 400 ns, 400 ns)
+(77, 200 ns, 200 ns)
+(78, 300 ns, 200 ns)
+(79, 100 ns, 100 ns)
+(80, 300 ns, 300 ns)
+(81, 200 ns, 300 ns)
+(82, 100 ns, 200 ns)
+(83, 300 ns, 200 ns)
+(84, 100 ns, 300 ns)
+(85, 300 ns, 200 ns)
+(86, 100 ns, 100 ns)
+(87, 200 ns, 200 ns)
+(88, 600 ns, 500 ns)
+(89, 400 ns, 400 ns)
+(90, 200 ns, 200 ns)
+(91, 0 ns, 100 ns)
+(92, 400 ns, 300 ns)
+(93, 400 ns, 300 ns)
+(94, 300 ns, 300 ns)
+(95, 100 ns, 200 ns)
+(96, 300 ns, 300 ns)
+(97, 200 ns, 200 ns)
+(98, 200 ns, 100 ns)
+(99, 300 ns, 300 ns)

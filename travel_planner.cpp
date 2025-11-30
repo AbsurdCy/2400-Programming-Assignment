@@ -21,6 +21,7 @@
 #include <iomanip>
 #include <fstream>
 #include <chrono>
+#include <cmath>
 
 using namespace std;
 
@@ -29,6 +30,47 @@ struct flight {
     double time;
     double cost;
 };
+
+struct City{
+    int id;
+    double x;
+    double y;
+};
+
+// struct to store result of closest pair
+struct ClosestPairResult {
+    double distance;
+    City cityA;
+    City cityB;
+};
+
+// function to calculate distance between two cities
+double dist(const City& a, const City& b) {
+    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
+}
+
+// brute force approach for closest pair of points
+double bf_closest_pair(const vector<City>& cities){
+    int n = (int)cities.size();
+    double best = numeric_limits<double>::infinity();
+    // to store the closest pair
+    City bestA, bestB;
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            double d = dist(cities[i], cities[j]);
+            if (d < best) {
+                best = d;
+                bestA = cities[i];
+                bestB = cities[j];
+            }
+        }
+    }
+    ClosestPairResult result;
+    result.distance = best;
+    result.cityA = bestA;
+    result.cityB = bestB;
+    return result.distance;
+}
 
 // sorts connected cities by time using bubble sort
 void bubbleSortTime(vector<flight>& flights, int& runtime) {
@@ -53,6 +95,69 @@ void bubbleSortTime(vector<flight>& flights, int& runtime) {
     runtime = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
 }
 
+//approach for divide and conquer approach
+double efficient_closest_pair(vector<City>& cityX, vector<City>& cityY){
+
+    int n = cityX.size();
+    int mid = n/2;
+
+
+    if (n <= 3){
+        return bf_closest_pair(cityX);
+    }
+
+
+    else{
+        double midX = cityX[mid].x;
+
+        // divide x and y vectors into left and right
+        vector<City> leftX( cityX.begin(), cityX.begin() + mid);
+        vector<City> rightX( cityX.begin() + mid, cityX.end());
+        vector<City> leftY, rightY;
+
+        for (int i=0 ; i < n; i++){
+            City currCity = cityY[i];
+            bool inLeftX = false;
+            for (int j=0; j < leftX.size(); j++){
+                if (currCity.id == leftX[j].id){
+                    inLeftX = true;
+                    break;
+                }
+            }
+            if (inLeftX== true){
+                leftY.push_back(cityY[i]);
+            } else {
+                rightY.push_back(cityY[i]);
+            }
+        }
+
+        // recurse to find min dist
+        double distL = efficient_closest_pair(leftX, leftY);
+        double distR = efficient_closest_pair(rightX, rightY);
+        double shortestDistA = min(distL, distR);
+
+        // find cities in the strip
+        vector<City> stp;
+        for (int i=0; i < n; i++){
+            if (abs(cityY[i].x - midX) < shortestDistA){
+                stp.push_back(cityY[i]);
+            }
+        }
+        // compare distances in stp to the shortestTot
+        double shortestTot = (pow(shortestDistA,2));
+        int stpsiz = stp.size();
+        for (int i=0; i < stpsiz; i++){
+            int k = i + 1;
+            while (k < stpsiz && (stp[k].y - stp[i].y) < shortestTot){
+                shortestTot = min(pow(stp[k].x - stp[i].x,2) + pow((stp[k].y - stp[i].y),2), shortestTot);
+                k++;
+            }
+        }
+        
+        return sqrt(shortestTot);
+
+    }
+}
 
 // sorts connected cities by cost using bubble sort
 void bubbleSortCost(vector<flight>& flights, int& runtime) {
@@ -128,6 +233,65 @@ void writeFlights(ofstream& outFile, const vector<flight>& flights){
 
 
 int main() {
+    // read city input
+    vector<City> cities;
+
+    ifstream infile("cities.txt");
+    while (infile) {
+        City c;
+        infile >> c.id >> c.x >> c.y;
+        if (infile) {
+            cities.push_back(c);
+        }
+    }
+    infile.close();
+
+    ofstream outfileBF("BF-closest.txt");
+    ofstream outfileDC("DC-closest.txt");
+    ofstream outfileTime("runtimes.txt");
+
+    // loop thru each subset and find min dist
+    for (int i = 50 ; i <= 100; ++i) {
+
+        vector<City> citiesSubset(cities.begin(), cities.begin() + i);
+
+        auto start = chrono::high_resolution_clock::now();
+        double minDist = bf_closest_pair(citiesSubset);
+        auto end = chrono::high_resolution_clock::now();
+        outfileBF << setprecision(10) << minDist << endl;
+        long long runtime1 = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+        
+        
+        vector<City> cityX = citiesSubset;
+        vector<City> cityY = citiesSubset;
+        
+        // sorting for dc approach
+        for (int j = 0; j < cityX.size(); ++j) {
+            for (int k = j + 1; k < cityX.size(); ++k) {
+                if (cityX[j].x > cityX[k].x) {
+                    City temp = cityX[j];
+                    cityX[j] = cityX[k];
+                    cityX[k] = temp;
+                }
+                if (cityY[j].y > cityY[k].y) {
+                    City temp = cityY[j];
+                    cityY[j] = cityY[k];
+                    cityY[k] = temp;
+                }
+            }
+        }
+        auto start2 = chrono::high_resolution_clock::now();
+        double effMinDist = efficient_closest_pair(cityX, cityY);
+        auto end2 = chrono::high_resolution_clock::now();
+        outfileDC << setprecision(10) << effMinDist << endl;
+        long long runtime2 = chrono::duration_cast<chrono::nanoseconds>(end2 - start2).count();
+
+        outfileTime << "Brute Force Runtime:" <<runtime1<< "ns" <<" Divide and Conquer Runtime:" << runtime2 << "ns" << endl;
+    }
+
+    outfileBF.close();
+    outfileDC.close();
+    outfileTime.close();
     
     vector<vector<flight>> allFlights = retrieveAllFlights();
 
