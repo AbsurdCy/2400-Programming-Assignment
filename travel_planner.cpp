@@ -44,6 +44,65 @@ struct ClosestPairResult {
     City cityB;
 };
 
+
+// retrueve costs from line in file
+vector<double> retrieveCosts(string line) {
+
+    vector<double> costs;
+    string cleanData =line.substr(1, line.length()-2); 
+    stringstream ss(cleanData);
+
+    char delimiter;
+    int cityID;
+    double cost;
+
+
+    while (ss >> delimiter) {
+        if (delimiter =='('){
+            ss >> cityID >> delimiter >> cost >> delimiter;
+            costs.push_back(cost);
+
+        }
+    }
+
+    return costs;
+}
+
+int max_cities(double B, vector<double>& costs){
+
+
+    int n= costs.size();
+
+    // convert to cents
+    int BCents = int(B*100); 
+    vector<int> cCents;
+    for (int i=0 ;i<n; i++){
+    cCents.push_back(int(costs[i]*100));
+    }
+
+
+    vector<vector<int>> D(n+1, vector<int>(BCents +1,0));
+    
+    for (int i=1; i<=n; i++){
+        for (int c=1; c<=BCents; c++){
+            
+            // cost > budget then skip
+            if (cCents[i-1] > c){ 
+                D[i][c] = D[i-1][c]; 
+
+            }
+            
+
+            // max of skip or visit
+            else{
+                D[i][c] = max(D[i-1][c],D[i-1][c -(cCents[i-1])]+1); 
+            }
+        }
+
+    }
+    return D[n][BCents];
+}
+
 // function to calculate distance between two cities
 double dist(const City& a, const City& b) {
     return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
@@ -233,6 +292,31 @@ void writeFlights(ofstream& outFile, const vector<flight>& flights){
 
 
 int main() {
+
+    ifstream inFile("roundtrip_costs.txt");
+    ofstream outFile("trip_nums.txt");
+
+    double budget =5000.00;
+    string line;
+    int lineCount=1;
+    while (getline(inFile, line)) {
+
+            // cout for debug
+            cout<< "Processing line: " << lineCount << endl;
+            lineCount++;
+            // cout << "Line data: " << line << endl; (debug)
+            vector<double> costs = retrieveCosts(line);
+            int maxCities = max_cities(budget,costs);
+            cout << "Max cities: "<< maxCities << endl;
+            outFile << maxCities << endl;
+        
+    }
+
+    inFile.close();
+    outFile.close();
+
+    return 0;
+
     // read city input
     vector<City> cities;
 
@@ -248,7 +332,7 @@ int main() {
 
     ofstream outfileBF("BF-closest.txt");
     ofstream outfileDC("DC-closest.txt");
-    ofstream outfileTime("runtimes.txt");
+    ofstream outfileTime("runtimes_closest.txt");
 
     // loop thru each subset and find min dist
     for (int i = 50 ; i <= 100; ++i) {
